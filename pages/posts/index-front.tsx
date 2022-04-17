@@ -2,12 +2,7 @@
 import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios'
-
-type Post = {
-  id: string;
-  title: string;
-  date: string;
-}
+import Post from 'interface/post';
 
 const usePosts = () => {
   const [posts, setPosts] = useState<Post[]>([])
