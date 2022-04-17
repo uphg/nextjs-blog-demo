@@ -3,7 +3,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import { marked } from 'marked'
 
-const postsDir = path.join(process.cwd(), 'posts')
+const postsDir = path.join(process.cwd(), 'markdown')
 
 export const getPosts = async () => {
   const fileNames = await fs.promises.readdir(postsDir)
