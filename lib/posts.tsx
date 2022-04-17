@@ -33,10 +33,10 @@ export const getPost = async (id: string) => {
   const { data: { title, date }, content } = matter(text)
 
   const htmlContent = marked(content) 
-  return {
+  return JSON.parse(JSON.stringify({
     title,
     date,
     content,
     htmlContent
-  }
+  }))
 }
