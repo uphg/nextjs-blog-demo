@@ -1,4 +1,4 @@
-import { NextPage, GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next"
+import { NextPage, GetStaticPaths, GetStaticPropsContext } from "next"
 import { getPost, getPostIds } from "lib/posts"
 import Post from 'interface/post';
 
@@ -10,10 +10,12 @@ const postsShow: NextPage<Props> = (props) => {
   const { post } = props
 
   return (
-    post ? <div>
-      <h1>{post?.title}</h1>
-      <article dangerouslySetInnerHTML={{ __html: post?.htmlContent }}></article>
-    </div> : null
+    post ? (
+      <div>
+        <h1>{post?.title}</h1>
+        <article dangerouslySetInnerHTML={{ __html: post?.htmlContent }}></article>
+      </div>
+    ) : null
   )
 }
 
