@@ -10,10 +10,10 @@ const postsShow: NextPage<Props> = (props) => {
   const { post } = props
 
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <article dangerouslySetInnerHTML={{ __html: post.htmlContent }}></article>
-    </div>
+    post ? <div>
+      <h1>{post?.title}</h1>
+      <article dangerouslySetInnerHTML={{ __html: post?.htmlContent }}></article>
+    </div> : null
   )
 }
 
@@ -21,6 +21,7 @@ export default postsShow
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const ids: string[] = await getPostIds()
+
   return {
     paths: ids.map((id) => ({ params: { id } })),
     fallback: true
