@@ -26,7 +26,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: ids.map((id) => ({ params: { id } })),
-    fallback: true
+    fallback: true // 处理 404
   }
 }
 
