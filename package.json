@@ -10,7 +10,8 @@
       "typeorm": "typeorm-ts-node-commonjs",
       "typeorm:build": "babel ./src --out-dir dist --extensions \".ts,.tsx\"",
       "migration:run": "typeorm migration:run -d src/data-source.ts",
-      "migration:revert": "typeorm migration:revert -d src/data-source.ts"
+      "migration:revert": "typeorm migration:revert -d src/data-source.ts",
+      "entity:create": "typeorm entity:create"
    },
    "dependencies": {
       "@babel/cli": "^7.17.10",

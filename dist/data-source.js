@@ -19,7 +19,7 @@ var AppDataSource = new _typeorm.DataSource({
   database: "blog_development",
   synchronize: false,
   logging: false,
-  entities: ['dist/entities/**/*.js'],
+  entities: ['dist/entity/**/*.js'],
   migrations: ['dist/migration/**/*.js'],
   subscribers: ['dist/subscribers/**/*.js']
 });
