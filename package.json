@@ -13,14 +13,17 @@
     "gray-matter": "^4.0.3",
     "marked": "^4.0.14",
     "next": "12.1.5",
+    "pg": "^8.7.3",
     "react": "18.0.0",
     "react-dom": "18.0.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.6",
     "ua-parser-js": "^1.0.2"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/marked": "^4.0.3",
-    "@types/node": "^17.0.24",
+    "@types/node": "^17.0.30",
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
     "@types/ua-parser-js": "^0.7.36",
