@@ -10,6 +10,8 @@
       "typeorm": "typeorm-ts-node-commonjs"
    },
    "dependencies": {
+      "@babel/cli": "^7.17.10",
+      "@babel/core": "^7.17.10",
       "axios": "^0.26.1",
       "gray-matter": "^4.0.3",
       "marked": "^4.0.14",
@@ -22,6 +24,7 @@
       "ua-parser-js": "^1.0.2"
    },
    "devDependencies": {
+      "@babel/plugin-proposal-decorators": "^7.17.9",
       "@types/axios": "^0.14.0",
       "@types/marked": "^4.0.3",
       "@types/node": "^16.11.10",
@@ -30,7 +33,7 @@
       "@types/ua-parser-js": "^0.7.36",
       "eslint": "8.13.0",
       "eslint-config-next": "12.1.5",
-      "typescript": "4.5.2",
-      "ts-node": "10.7.0"
+      "ts-node": "10.7.0",
+      "typescript": "4.5.2"
    }
 }
