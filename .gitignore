@@ -14,8 +14,10 @@
 
 # production
 /build
-
 /blog-data/
+
+tmp/
+temp/
 
 # misc
 .DS_Store
