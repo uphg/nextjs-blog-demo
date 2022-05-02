@@ -9,7 +9,6 @@ require("reflect-metadata");
 
 var _typeorm = require("typeorm");
 
-// import { User } from "./entity/User"
 var AppDataSource = new _typeorm.DataSource({
   type: "postgres",
   host: "localhost",

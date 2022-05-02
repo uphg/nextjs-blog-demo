@@ -15,6 +15,7 @@
 # production
 /build
 /blog-data/
+/blog-data;C/
 
 tmp/
 temp/

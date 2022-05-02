@@ -9,8 +9,9 @@
       "lint": "next lint",
       "typeorm": "typeorm-ts-node-commonjs",
       "typeorm:build": "babel ./src --out-dir dist --extensions \".ts,.tsx\"",
-      "migration:run": "typeorm migration:run -d src/data-source.ts",
-      "migration:revert": "typeorm migration:revert -d src/data-source.ts",
+      "m:create": "typeorm migration:create",
+      "m:run": "typeorm-ts-node-commonjs migration:run -d src/data-source.ts",
+      "m:revert": "typeorm-ts-node-commonjs migration:revert -d src/data-source.ts",
       "entity:create": "typeorm entity:create"
    },
    "dependencies": {
