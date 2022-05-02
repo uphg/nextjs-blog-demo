@@ -12,7 +12,7 @@
       "m:create": "typeorm migration:create",
       "m:run": "typeorm-ts-node-commonjs migration:run -d src/data-source.ts",
       "m:revert": "typeorm-ts-node-commonjs migration:revert -d src/data-source.ts",
-      "entity:create": "typeorm entity:create"
+      "e:create": "typeorm entity:create"
    },
    "dependencies": {
       "@babel/cli": "^7.17.10",
