@@ -1,6 +1,6 @@
-import { NextPage, GetStaticPaths, GetStaticPropsContext } from "next"
-import { getPost, getPostIds } from "lib/posts"
-import Post from 'interface/post';
+import { NextPage, GetStaticPaths, GetStaticPropsContext, GetServerSideProps } from "next"
+import { getDataSource } from "lib/getDataSource";
+import { Post } from "src/entity/Post";
 
 type Props = {
   post: Post
@@ -13,7 +13,7 @@ const postsShow: NextPage<Props> = (props) => {
     post ? (
       <div>
         <h1>{post?.title}</h1>
-        <article dangerouslySetInnerHTML={{ __html: post?.htmlContent }}></article>
+        <article dangerouslySetInnerHTML={{ __html: post?.content }}></article>
       </div>
     ) : null
   )
@@ -21,22 +21,16 @@ const postsShow: NextPage<Props> = (props) => {
 
 export default postsShow
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const ids: string[] = await getPostIds()
-
-  return {
-    paths: ids.map((id) => ({ params: { id } })),
-    fallback: true // 处理 404
-  }
-}
-
-export const getStaticProps = async (context: GetStaticPropsContext<{ id: string }>) => {
-  const id = context.params?.id || ''
-  const post = await getPost(id)
-
+export const getServerSideProps: GetServerSideProps<any, { id: string }> = async (context) => {
+  const myDataSource = await getDataSource()
+  const post = await myDataSource.manager.findOne(Post, {
+    where: {
+      id: context.params.id
+    }
+  })
   return {
     props: {
-      post: post
+      post: JSON.parse(JSON.stringify(post))
     }
   }
 }

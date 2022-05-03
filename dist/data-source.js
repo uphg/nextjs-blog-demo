@@ -3,13 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.AppDataSource = void 0;
+exports.AppDataSource = exports.AppDataSourceOptions = void 0;
 
 require("reflect-metadata");
 
 var _typeorm = require("typeorm");
 
-var AppDataSource = new _typeorm.DataSource({
+var _Comment = require("./entity/Comment");
+
+var _Post = require("./entity/Post");
+
+var _User = require("./entity/User");
+
+var AppDataSourceOptions = {
   type: "postgres",
   host: "localhost",
   port: 5432,
@@ -18,8 +24,13 @@ var AppDataSource = new _typeorm.DataSource({
   database: "blog_development",
   synchronize: false,
   logging: false,
-  entities: ['dist/entity/**/*.js'],
+  entities: [// 'dist/entity/**/*.js',
+  // 'src/entity/**/*.ts'
+  // __dirname + "/entity/*.ts"
+  _User.User, _Post.Post, _Comment.Comment],
   migrations: ['dist/migration/**/*.js'],
   subscribers: ['dist/subscribers/**/*.js']
-});
+};
+exports.AppDataSourceOptions = AppDataSourceOptions;
+var AppDataSource = new _typeorm.DataSource(AppDataSourceOptions);
 exports.AppDataSource = AppDataSource;
