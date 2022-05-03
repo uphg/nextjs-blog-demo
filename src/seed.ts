@@ -27,6 +27,6 @@ AppDataSource.initialize().then(async () => {
   c1.content = 'Awesome!'
   await manager.save(c1)
 
-  AppDataSource.close()
+  AppDataSource.destroy()
 
 }).catch(error => console.log(error))
