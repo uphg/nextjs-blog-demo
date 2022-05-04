@@ -47,7 +47,7 @@ _dataSource.AppDataSource.initialize().then( /*#__PURE__*/(0, _asyncToGenerator2
           return manager.save(c1);
 
         case 18:
-          _dataSource.AppDataSource.close();
+          _dataSource.AppDataSource.destroy();
 
         case 19:
         case "end":

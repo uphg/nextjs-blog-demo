@@ -25,14 +25,23 @@ rm -rf blog-data
 ## 创建数据库
 
 ```sh
+# 进入指定容器
 docker exec -it <id> bash
+
+# 进入 blog 用户
 psql -U blog
+
+# 创建 blog_development 数据库
 CREATE DATABASE blog_development ENCODING 'UTF8' LC_COLLATE 'en_US.utf8' LC_CTYPE 'en_US.utf8';
+
+# 进入 blog_development 数据库
+\c blog_development
 ```
 
 ## 创建数据表
 
 ```sh
+rm -rf dist
 yarn m:run
 node dist/seed.js
 ```

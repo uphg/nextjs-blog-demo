@@ -4,7 +4,7 @@ import { Comment } from "./entity/Comment"
 import { Post } from "./entity/Post"
 import { User } from "./entity/User"
 
-export const AppDataSourceOptions = {
+export const AppDataSourceOptions: DataSourceOptions = {
   type: "postgres",
   host: "localhost",
   port: 5432,
@@ -27,6 +27,6 @@ export const AppDataSourceOptions = {
   subscribers: [
     'dist/subscribers/**/*.js'
   ]
-} as DataSourceOptions
+}
 
 export const AppDataSource = new DataSource(AppDataSourceOptions)
