@@ -11,9 +11,9 @@ export class User {
   @Column('varchar')
     passwordDigest: string;
   @CreateDateColumn()
-    createAt: Date;
+    createdAt: Date;
   @UpdateDateColumn()
-    updateAt: Date;
+    updatedAt: Date;
   @OneToMany(() => Post, post => post.author)
     posts: Post[]
   @OneToMany(() => Comment, comment => comment.user)

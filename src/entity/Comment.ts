@@ -9,9 +9,9 @@ export class Comment {
   @Column('text')
     content: string;
   @CreateDateColumn()
-    createAt: Date;
+    createdAt: Date;
   @UpdateDateColumn()
-    updateAt: Date;
+    updatedAt: Date;
   @ManyToOne(() => User, user => user.comments)
     user: User;
   @ManyToOne(() => Post, post => post.comments)
