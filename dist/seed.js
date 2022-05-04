@@ -49,7 +49,9 @@ _dataSource.AppDataSource.initialize().then( /*#__PURE__*/(0, _asyncToGenerator2
         case 18:
           _dataSource.AppDataSource.destroy();
 
-        case 19:
+          console.log('OK!');
+
+        case 20:
         case "end":
           return _context.stop();
       }

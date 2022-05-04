@@ -30,6 +30,8 @@ const Home: NextPage<Props> = (props) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const myDataSource = await getDataSource()
   const posts = await myDataSource.manager.find(Post)
+  console.log('posts')
+  console.log(posts)
 
   const ua = context.req.headers['user-agent']
   const result = new UAParser(ua).getResult()

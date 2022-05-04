@@ -28,5 +28,6 @@ AppDataSource.initialize().then(async () => {
   await manager.save(c1)
 
   AppDataSource.destroy()
+  console.log('OK!')
 
 }).catch(error => console.log(error))
