@@ -25,8 +25,6 @@ var AppDataSourceOptions = {
   synchronize: false,
   logging: false,
   entities: [// 'dist/entity/**/*.js',
-  // 'src/entity/**/*.ts'
-  // __dirname + "/entity/*.ts"
   _User.User, _Post.Post, _Comment.Comment],
   migrations: ['dist/migration/**/*.js'],
   subscribers: ['dist/subscribers/**/*.js']

@@ -14,8 +14,8 @@ export class Post {
     createdAt: Date;
   @UpdateDateColumn()
     updatedAt: Date;
-  @ManyToOne(() => User, user => user.posts)
+  @ManyToOne('User', 'posts')
     author: User;
-  @OneToMany(() => Comment, comment => comment.post)
+  @OneToMany('Comment', 'post')
     comments: Comment[];
 }

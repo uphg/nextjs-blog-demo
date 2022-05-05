@@ -1,7 +1,7 @@
-import { getDataSource } from "lib/getDataSource";
-import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { BeforeInsert, Column, CreateDateColumn, Entity, EntityManager, getManager, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 import _ from 'lodash'
 import md5 from "md5";
+import { getDataSource } from "lib/getDataSource";
 import { Comment } from "./Comment";
 import { Post } from "./Post";
 
@@ -17,9 +17,9 @@ export class User {
     createdAt: Date;
   @UpdateDateColumn()
     updatedAt: Date;
-  @OneToMany(() => Post, post => post.author)
+  @OneToMany('Post', 'author')
     posts: Post[];
-  @OneToMany(() => Comment, comment => comment.user)
+  @OneToMany('Comment', 'user')
     comments: Comment[];
   errors = {
     username: [] as string[],

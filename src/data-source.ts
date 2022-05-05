@@ -15,8 +15,6 @@ export const AppDataSourceOptions: DataSourceOptions = {
   logging: false,
   entities: [
     // 'dist/entity/**/*.js',
-    // 'src/entity/**/*.ts'
-    // __dirname + "/entity/*.ts"
     User,
     Post,
     Comment,

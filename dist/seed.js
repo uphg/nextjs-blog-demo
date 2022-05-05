@@ -24,7 +24,7 @@ _dataSource.AppDataSource.initialize().then( /*#__PURE__*/(0, _asyncToGenerator2
 
           u1 = new _User.User();
           u1.username = 'Jack';
-          u1.passwordDigest = 'xxx';
+          u1.password = 'xxx';
           _context.next = 6;
           return manager.save(u1);
 
