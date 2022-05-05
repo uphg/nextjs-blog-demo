@@ -1,25 +1,23 @@
 import axios, { AxiosResponse } from "axios"
-import next, { NextPage } from "next"
+import { NextPage } from "next"
 import { useRouter } from "next/router"
 import { useCallback, useState } from "react"
 
-const SignUp: NextPage = () => {
+const SignIn: NextPage = () => {
   const router = useRouter()
   const [formData, setFormData] = useState({
     username: '',
     password: '',
-    passwordConfirmation: ''
   })
   const [errors, setErrors] = useState({
     username: [],
     password: [],
-    passwordConfirmation: []
   })
   const onSubmit = useCallback((e) => {
     e.preventDefault()
-    axios.post('/api/v1/users', formData).then((response) => {
-      window.alert('注册成功')
-      router.push('/sign_in')
+    axios.post('/api/v1/sessions', formData).then((response) => {
+      window.alert('登录成功')
+      router.push('/')
     }, (error) => {
       if (error.response) {
         const response: AxiosResponse = error.response
@@ -31,7 +29,8 @@ const SignUp: NextPage = () => {
   }, [formData])
   return (
     <>
-      <h2>注册</h2>
+      <h2>登录</h2>
+      <p>{JSON.stringify(formData)}</p>
       <form onSubmit={onSubmit}>
         <div>
           <label>
@@ -64,20 +63,6 @@ const SignUp: NextPage = () => {
           { errors.password.length > 0 && <span>{errors.password.join('，')}</span> }
         </div>
         <div>
-          <label>
-            <span>重复密码</span>
-            <input type="password" value={formData.passwordConfirmation}
-              onChange={(e) => {
-                setFormData({
-                  ...formData,
-                  passwordConfirmation: e.target.value 
-                })
-              }}
-            />
-          </label>
-          { errors.passwordConfirmation.length > 0 && <span>{errors.passwordConfirmation.join('，')}</span> }
-        </div>
-        <div>
           <button type="submit">提交</button>
         </div>
       </form>
@@ -85,4 +70,4 @@ const SignUp: NextPage = () => {
   )
 }
 
-export default SignUp
+export default SignIn

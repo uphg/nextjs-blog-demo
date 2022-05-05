@@ -1,7 +1,7 @@
-import { BeforeInsert, Column, CreateDateColumn, Entity, EntityManager, getManager, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 import _ from 'lodash'
 import md5 from "md5";
-import { getDataSource } from "lib/getDataSource";
+import { AppDataSource } from "../data-source";
 import { Comment } from "./Comment";
 import { Post } from "./Post";
 
@@ -45,8 +45,7 @@ export class User {
     }
 
     // 在数据库中查找该用户名，判断是否重复
-    const myDataSource = await getDataSource()
-    const founds = await myDataSource.manager.find(User, {
+    const founds = await AppDataSource.manager.find(User, {
       where: { username: username }
     })
     if (founds.length > 0) {

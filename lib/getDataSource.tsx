@@ -1,11 +1,11 @@
 import { AppDataSource } from "src/data-source"
 
 const promise = (async function () {
-  // if (AppDataSource.isInitialized) {
-  //   console.log('需要关闭')
-  //   await AppDataSource.destroy()
-  // }
-  return AppDataSource.initialize()
+  if (AppDataSource.isInitialized) {
+    return AppDataSource
+  } else {
+    return AppDataSource.initialize()
+  }
 })();
 
 export const getDataSource = async () => {

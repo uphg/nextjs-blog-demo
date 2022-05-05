@@ -29,7 +29,7 @@ var _lodash = _interopRequireDefault(require("lodash"));
 
 var _md = _interopRequireDefault(require("md5"));
 
-var _getDataSource = require("lib/getDataSource");
+var _dataSource = require("../data-source");
 
 var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
 
@@ -56,7 +56,7 @@ var User = (_dec = (0, _typeorm.Entity)('users'), _dec2 = (0, _typeorm.PrimaryGe
     key: "validate",
     value: function () {
       var _validate = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
-        var errors, password, passwordConfirmation, username, myDataSource, founds;
+        var errors, password, passwordConfirmation, username, founds;
         return _regenerator["default"].wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -78,18 +78,13 @@ var User = (_dec = (0, _typeorm.Entity)('users'), _dec2 = (0, _typeorm.PrimaryGe
 
 
                 _context.next = 5;
-                return (0, _getDataSource.getDataSource)();
-
-              case 5:
-                myDataSource = _context.sent;
-                _context.next = 8;
-                return myDataSource.manager.find(User, {
+                return _dataSource.AppDataSource.manager.find(User, {
                   where: {
                     username: username
                   }
                 });
 
-              case 8:
+              case 5:
                 founds = _context.sent;
 
                 if (founds.length > 0) {
@@ -104,7 +99,7 @@ var User = (_dec = (0, _typeorm.Entity)('users'), _dec2 = (0, _typeorm.PrimaryGe
                   errors.passwordConfirmation.push('两次输入密码不一致');
                 }
 
-              case 12:
+              case 9:
               case "end":
                 return _context.stop();
             }
