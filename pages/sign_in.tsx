@@ -1,9 +1,11 @@
 import axios, { AxiosResponse } from "axios"
-import { NextPage } from "next"
+import { withSessionSsr } from "lib/withSession"
+import { GetServerSideProps, NextPage } from "next"
 import { useRouter } from "next/router"
 import { useCallback, useState } from "react"
+import { User } from "src/entity/User"
 
-const SignIn: NextPage = () => {
+const SignIn: NextPage<{ user: User }> = (props) => {
   const router = useRouter()
   const [formData, setFormData] = useState({
     username: '',
@@ -27,10 +29,14 @@ const SignIn: NextPage = () => {
       }
     })
   }, [formData])
+
   return (
     <>
+      {props.user && <div>
+        当前登录用户为：{props.user.username}
+      </div>}
+      
       <h2>登录</h2>
-      <p>{JSON.stringify(formData)}</p>
       <form onSubmit={onSubmit}>
         <div>
           <label>
@@ -71,3 +77,12 @@ const SignIn: NextPage = () => {
 }
 
 export default SignIn
+// @ts-ignore
+export const getServerSideProps: GetServerSideProps <any, { user: string }> = withSessionSsr(async function getServerSideProps(context) {
+  const user = context.req.session.currentUser || null
+  return {
+    props: {
+      user: user
+    }
+  }
+})
