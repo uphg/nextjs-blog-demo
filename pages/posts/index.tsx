@@ -1,14 +1,20 @@
-import { GetStaticProps, NextPage } from 'next';
-import { getPosts } from 'lib/posts';
-import Link from 'next/link';
-import Post from 'interface/post';
+import { GetServerSideProps, NextPage } from 'next'
+import { Post } from 'src/entity/Post'
+import { UAParser } from 'ua-parser-js'
+import { getDataSource } from 'lib/getDataSource'
+import Link from "next/link"
 
-// SSG静态页渲染
-type Props = {
+interface Props {
+  browser: {
+    name: string;
+    version: string;
+    major: string;
+  },
   posts: Post[]
 }
 
 const PostsIndex: NextPage<Props> = (props) => {
+
   return (
     <div>
       <h2>文章列表</h2>
@@ -19,10 +25,16 @@ const PostsIndex: NextPage<Props> = (props) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getPosts()
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const myDataSource = await getDataSource()
+  const posts = await myDataSource.manager.find(Post)
+
+  const ua = context.req.headers['user-agent']
+  const result = new UAParser(ua).getResult()
+
   return {
     props: {
+      browser: result.browser,
       posts: JSON.parse(JSON.stringify(posts))
     }
   }
