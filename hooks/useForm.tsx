@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios"
+import { useRouter } from "next/router"
 import { ReactChild, useCallback, useState } from "react"
 
 type Field<T> = {
@@ -19,6 +20,7 @@ type useFormOptions<T> = {
 }
 
 export function useForm<T>(options: useFormOptions<T>) {
+  const router = useRouter()
   const { initFormData, fields, buttons, submit } = options
   const [formData, setFormData] = useState(initFormData)
   const [errors, setErrors] = useState(() => {
@@ -37,8 +39,15 @@ export function useForm<T>(options: useFormOptions<T>) {
     }, (e) => {
       if(e.response) {
         const response: AxiosResponse = e.response
-        if(response.status === 422) {
+        const { status } = response
+        if (status === 422) {
           setErrors(response.data)
+        } else if (status === 401) {
+          window.alert('未登录，请先登录')
+          const returnTo = window.location.pathname
+          router.push('/sign_in').then(() => {
+            router.push({ query: { returnTo }})
+          })
         }
       }
     })

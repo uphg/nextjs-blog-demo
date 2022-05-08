@@ -10,6 +10,11 @@ const Posts: NextApiHandler = withSessionRoute(async (req, res) => {
     post.title = title
     post.content = content
     const user = req.session.currentUser
+    if (!user) {
+      res.statusCode = 401
+      res.end()
+      return
+    }
     post.author = user
     const myAppDataSource = await getDataSource()
     await myAppDataSource.manager.save(post)

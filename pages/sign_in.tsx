@@ -1,4 +1,5 @@
 import axios from "axios"
+import qs from 'query-string'
 import { useForm } from "hooks/useForm"
 import { withSessionSsr } from "lib/withSession"
 import { GetServerSideProps, NextPage } from "next"
@@ -28,7 +29,9 @@ const SignIn: NextPage<{ user: User }> = (props) => {
       request: (formData) => axios.post('/api/v1/sessions', formData),
       success: () => {
         window.alert('登录成功')
-        router.push('/')
+        const query = qs.parse(window.location.search)
+        const path = query.returnTo.toString()
+        router.push(path)
       }
     },
     buttons: <button type="submit">登录</button>
