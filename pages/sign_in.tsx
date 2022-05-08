@@ -26,8 +26,10 @@ const SignIn: NextPage<{ user: User }> = (props) => {
     ],
     submit: {
       request: (formData) => axios.post('/api/v1/sessions', formData),
-      success: () => { router.push('/') },
-      successMessage: '登录成功'
+      success: () => {
+        window.alert('登录成功')
+        router.push('/')
+      }
     },
     buttons: <button type="submit">登录</button>
   })

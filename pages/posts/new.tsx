@@ -22,7 +22,9 @@ const NewPost: NextPage= () => {
     ],
     submit: {
       request: (FormData) => axios.post('/api/v1/posts', FormData),
-      successMessage: '创建成功'
+      success: () => {
+        window.alert('创建成功')
+      }
     },
     buttons: <button type="submit">提交</button>
   })

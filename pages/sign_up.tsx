@@ -30,8 +30,10 @@ const SignUp: NextPage = () => {
     ],
     submit: {
       request: (formData) => axios.post('/api/v1/users', formData),
-      success: () => { router.push('/sign_in') },
-      successMessage: '注册成功'
+      success: () => {
+        window.alert('注册成功')
+        router.push('/sign_in')
+      }
     },
     buttons: <button type="submit">提交</button>
   })

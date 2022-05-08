@@ -14,7 +14,7 @@ type useFormOptions<T> = {
   submit: {
     request: (formData: T) => Promise<AxiosResponse<T>>;
     success?: (response: AxiosResponse<T, any>) => void;
-    successMessage: string;
+    successMessage?: string;
   }
 }
 
@@ -33,7 +33,6 @@ export function useForm<T>(options: useFormOptions<T>) {
   const _onSubimt = useCallback((e) => {
     e.preventDefault()
     submit.request(formData).then((response) => {
-      window.alert(submit.successMessage)
       submit.success && submit.success(response)
     }, (e) => {
       if(e.response) {
