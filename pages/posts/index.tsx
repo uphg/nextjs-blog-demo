@@ -4,6 +4,7 @@ import qs from 'query-string'
 import { Post } from 'src/entity/Post'
 import { getDataSource } from 'lib/getDataSource'
 import Link from "next/link"
+import { usePager } from 'hooks/usePager'
 
 interface Props {
   browser: {
@@ -18,24 +19,15 @@ interface Props {
 }
 
 const PostsIndex: NextPage<Props> = (props) => {
-
+  const { page, total, count } = props
+  const pager = usePager({ page, total, count })
   return (
     <div>
       <h2>文章列表</h2>
       {props.posts.map((item) => <div key={item.id}>
         <Link href={`/posts/${item.id}`}><a>{item.title}</a></Link>
       </div>)}
-      <div>
-        <div>共 {props.count} 篇文章，当前 {props.page}/{props.total}</div>
-        <div>
-          {props.page > 1 && <Link href={`?page=${props.page - 1}`}>
-            <a>上一页</a>
-          </Link>}
-          {props.page < props.total && <Link href={`?page=${props.page + 1}`}>
-            <a>下一页</a>
-          </Link>}
-        </div>
-      </div>
+      {pager}
     </div>
   )
 }
@@ -45,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   
   // 获取分页
   const myDataSource = await getDataSource()
-  const perPage = 3
+  const perPage = 2
   const url = context.req.url
   const index = url.indexOf('?')
   const search = url.substring(index + 1)
