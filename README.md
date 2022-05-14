@@ -1,3 +1,5 @@
+## Next.js & TypeORM 博客项目实战
+
 ## 启动数据库
 
 ```sh
@@ -42,16 +44,5 @@ CREATE DATABASE blog_development ENCODING 'UTF8' LC_COLLATE 'en_US.utf8' LC_CTYP
 ```sh
 rm -rf dist
 yarn m:run
-node dist/seed.js
-```
-
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
+yarn seed
 ```
