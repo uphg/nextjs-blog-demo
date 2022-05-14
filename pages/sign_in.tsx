@@ -30,8 +30,10 @@ const SignIn: NextPage<{ user: User }> = (props) => {
       success: () => {
         window.alert('登录成功')
         const query = qs.parse(window.location.search)
-        const path = query.returnTo.toString()
-        router.push(path)
+        if (query.returnTo) {
+          const path = query.returnTo.toString()
+          router.push(path)
+        }
       }
     },
     buttons: <button type="submit">登录</button>
