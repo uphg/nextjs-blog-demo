@@ -1,4 +1,4 @@
-import { AppDataSource } from "src/data-source"
+import { AppDataSource } from "typeorm/data-source"
 
 const promise = (async function () {
   if (AppDataSource.isInitialized) {

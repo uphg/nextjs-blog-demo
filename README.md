@@ -1,7 +1,7 @@
 ## 启动数据库
 
 ```sh
-# 运行一个容器
+# 运行一个 docker 容器
 docker run -v "$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
 ```
 

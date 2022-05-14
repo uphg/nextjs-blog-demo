@@ -3,16 +3,17 @@
    "version": "0.1.0",
    "private": true,
    "scripts": {
-      "dev": "concurrently \"next dev\" \"babel -w ./src --out-dir dist --extensions .ts,.tsx\"",
+      "dev": "concurrently \"next dev\" \"babel -w ./typeorm --out-dir dist --extensions .ts,.tsx\"",
       "build": "next build",
-      "start": "ts-node src/index.ts",
+      "start": "next start",
       "lint": "next lint",
       "typeorm": "typeorm-ts-node-commonjs",
-      "typeorm:build": "babel ./src --out-dir dist --extensions \".ts,.tsx\"",
+      "typeorm:build": "babel ./typeorm --out-dir dist --extensions \".ts,.tsx\"",
       "m:create": "typeorm migration:create",
-      "m:run": "typeorm-ts-node-commonjs migration:run -d src/data-source.ts",
-      "m:revert": "typeorm-ts-node-commonjs migration:revert -d src/data-source.ts",
-      "e:create": "typeorm entity:create"
+      "m:run": "typeorm-ts-node-commonjs migration:run -d typeorm/data-source.ts",
+      "m:revert": "typeorm-ts-node-commonjs migration:revert -d typeorm/data-source.ts",
+      "e:create": "typeorm entity:create",
+      "seed": "ts-node typeorm/seed.ts"
    },
    "dependencies": {
       "@babel/cli": "^7.17.10",
