@@ -20,10 +20,10 @@ export const AppDataSourceOptions: DataSourceOptions = {
     Comment,
   ],
   migrations: [
-    'typeorm/migration/**/*.ts'
+    'dist/migration/**/*.js'
   ],
   subscribers: [
-    'typeorm/subscribers/**/*.ts'
+    'dist/subscribers/**/*.js'
   ]
 }
 
