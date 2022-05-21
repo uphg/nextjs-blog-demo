@@ -3,8 +3,9 @@
 ## 启动数据库
 
 ```sh
-# 运行一个 docker 容器
-docker run -v "$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
+# 运行一个 docker 容器，我更新好了
+docker network create network1
+docker run --net=network1 --name=psql1 -v "/$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
 ```
 
 ## 清空之前的开发环境
@@ -45,4 +46,13 @@ CREATE DATABASE blog_development ENCODING 'UTF8' LC_COLLATE 'en_US.utf8' LC_CTYP
 rm -rf dist
 yarn m:run
 yarn seed
+```
+
+## run
+
+```bash
+yarn build
+docker build . -t jack/node-web-app
+docker run --name=node1 --network=network1 -p 3000:3000 -dit jack/node-web-app
+docker logs node1
 ```

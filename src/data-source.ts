@@ -6,7 +6,7 @@ import { User } from "./entity/User"
 
 export const AppDataSourceOptions: DataSourceOptions = {
   type: "postgres",
-  host: "localhost",
+  host: "psql1",
   port: 5432,
   username: "blog",
   password: "",
