@@ -1,4 +1,4 @@
-import { NextPage, GetStaticPaths, GetStaticPropsContext, GetServerSideProps } from "next"
+import { NextPage, GetServerSideProps } from "next"
 import { getDataSource } from "lib/getDataSource";
 import { Post } from "src/entity/Post";
 
