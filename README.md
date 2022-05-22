@@ -2,10 +2,17 @@
 
 ## 启动数据库
 
+运行一个 docker 容器
+
 ```sh
-# 运行一个 docker 容器，我更新好了
+# 在 Docker 中创建一个网络（服务器可不做）
 docker network create network1
+
+# 本地运行
 docker run --net=network1 --name=psql1 -v "/$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
+
+# 服务器上运行
+docker run -v /home/blog/blog-data/:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
 ```
 
 ## 清空之前的开发环境
@@ -53,6 +60,11 @@ yarn seed
 ```bash
 yarn build
 docker build . -t jack/node-web-app
+
+# 本地运行
 docker run --name=node1 --network=network1 -p 3000:3000 -dit jack/node-web-app
+# 服务器上运行
+docker run --name=node1 --network=host -p 3000:3000 -dit jack/node-web-app
+
 docker logs node1
 ```
