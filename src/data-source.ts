@@ -6,15 +6,14 @@ import { User } from "./entity/User"
 
 export const AppDataSourceOptions: DataSourceOptions = {
   type: "postgres",
-  host: "psql1",
+  host: process.env.NODE_ENV === 'production' ? 'localhost' : "psql1",
   port: 5432,
   username: "blog",
   password: "",
-  database: "blog_development",
+  database: process.env.NODE_ENV === 'production' ? "blog_production" : "blog_development",
   synchronize: false,
   logging: false,
   entities: [
-    // 'dist/entity/**/*.js',
     User,
     Post,
     Comment,
