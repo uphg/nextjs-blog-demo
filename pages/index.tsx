@@ -1,5 +1,14 @@
-import PostsIndex, { getServerSideProps } from './posts/index'
+// import PostsIndex, { getServerSideProps } from './posts/index'
+import style from 'styles/Home.module.scss'
 
-export default PostsIndex
+const Home = () => {
+  return (
+    <>
+      <h2 className={style.title}>首页</h2>
+    </>
+  )
+}
 
-export { getServerSideProps }
+export default Home
+
+// export { getServerSideProps }
