@@ -1,13 +1,13 @@
-// components/layout.js
-
 import Navbar from './navbar'
 import Footer from './footer'
+import style from 'styles/layout.module.scss'
 
-function Layout({ children }) {
+function Layout(props) {
+  const { children } = props
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <main className={style.main}>{children}</main>
       <Footer />
     </>
   )

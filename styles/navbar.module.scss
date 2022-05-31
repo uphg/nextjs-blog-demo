@@ -1,0 +1,45 @@
+.navbar {
+  height: 52px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.container {
+  display: flex;
+  width: 1032px;
+  padding: 0 16px;
+  margin: {
+    left: auto;
+    right: auto;
+  };
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  color: #565273;
+}
+
+.nav-links {
+  font-size: 14px;
+  line-height: 52px;
+  .nav-item {
+    padding: 0 16px;
+    &.active {
+      font-weight: 700;
+    }
+  }
+
+  // background-color: red;
+}
+
+.username {
+  margin-left: auto;
+}
+

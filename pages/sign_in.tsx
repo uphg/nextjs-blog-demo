@@ -27,8 +27,10 @@ const SignIn: NextPage<{ user: User }> = (props) => {
     ],
     submit: {
       request: (formData) => axios.post('/api/v1/sessions', formData),
-      success: () => {
+      success: (response) => {
         window.alert('登录成功')
+        console.log('response')
+        console.log(response)
         const query = qs.parse(window.location.search)
         if (query.returnTo) {
           const path = query.returnTo.toString()
