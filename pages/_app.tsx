@@ -5,24 +5,24 @@ import axios from 'axios'
 import { useStore } from 'hooks/useStore'
 import { useEffect } from 'react'
 
-
-let count = 0
-async function initUserInfo() {
-  if (count === 1) return
-  count = 1
-  const store = useStore()
-  console.log('store.user.name')
-  console.log(store.user.name)
-  !store.user.name && axios.get('/api/v1/userinfo').then((response) => {
-    const { username } = response?.data || {}
-    store.user.setName(username || null)
+function getUserInfo() {
+  return new Promise((resolve, reject) => {
+    axios.get('/api/v1/userinfo').then((response) => {
+      const { username } = response?.data || {}
+      resolve({ username })
+    })
   })
 }
 
 export default function MyApp(options) {
   const { Component, pageProps } = options
   enableStaticRendering(typeof window === 'undefined')
-  initUserInfo()
+  const store = useStore()
+  useEffect(() => {
+    getUserInfo().then(({ username }) => {
+      store.user.setName(username || null)
+    })
+  }, [])
   return (
     <Layout>
       <Component {...pageProps} />

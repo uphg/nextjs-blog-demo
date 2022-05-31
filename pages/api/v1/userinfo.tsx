@@ -1,22 +1,19 @@
-import { getDataSource } from "lib/getDataSource"
+// import { getDataSource } from "lib/getDataSource"
 import { withSessionRoute } from "lib/withSession"
 import { NextApiHandler } from "next"
-import { User } from "src/entity/User"
+// import { User } from "src/entity/User"
 
 
 const Userinfo: NextApiHandler = withSessionRoute(async (request, response) => {
   const user = request.session.currentUser || null
-  const myDataSource = await getDataSource()
-  const founds = await myDataSource.manager.find(User, {
-    where: { username: user.username }
-  })
-
-  console.log('founds')
-  console.log(founds)
-  if (founds.length) {
+  // const myDataSource = await getDataSource()
+  // const founds = await myDataSource.manager.find(User, {
+  //   where: { username: user.username }
+  // })
+  if (user) {
     response.statusCode = 200
     response.setHeader('Content-Type', 'application/json')
-    response.json({ username: founds[0].username })
+    response.json({ username: user.username })
   } else {
     response.statusCode = 401
   }
