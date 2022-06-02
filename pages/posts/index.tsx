@@ -2,8 +2,9 @@ import { GetServerSideProps, NextPage } from 'next'
 import { usePosts, PostsProps } from 'hooks/usePosts'
 import LayoutDefault from 'components/layout/default'
 import { getPaginationPost } from 'lib/getPaginationPost'
+import { NextPageWithLayout } from 'pages/_app'
 
-const PostsIndex = (props: PostsProps) => {
+const PostsIndex: NextPageWithLayout<PostsProps> = (props) => {
   const posts = usePosts(props)
   return (
     <div>

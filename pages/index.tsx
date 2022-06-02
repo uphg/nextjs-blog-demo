@@ -1,10 +1,11 @@
 import style from 'styles/home.module.scss'
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps } from 'next'
 import { Post } from 'src/entity/Post'
 import Link from "next/link"
 import { usePager } from 'hooks/usePager'
 import LayoutDefault from 'components/layout/default'
 import { getPaginationPost } from 'lib/getPaginationPost'
+import { NextPageWithLayout } from './_app'
 
 interface Props {
   browser: {
@@ -18,7 +19,7 @@ interface Props {
   total: number;
 }
 
-const Home: NextPage<Props> = (props) => {
+const Home: NextPageWithLayout<Props> = (props) => {
   const { page, total, count } = props
   const pager = usePager({ page, total, count })
   return (
