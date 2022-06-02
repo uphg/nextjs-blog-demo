@@ -1,11 +1,10 @@
 import style from 'styles/home.module.scss'
 import { GetServerSideProps, NextPage } from 'next'
-import { UAParser } from 'ua-parser-js'
 import { Post } from 'src/entity/Post'
-import { getDataSource } from 'lib/getDataSource'
 import Link from "next/link"
 import { usePager } from 'hooks/usePager'
-import getQuery from 'lib/getQuery'
+import LayoutDefault from 'components/layout/default'
+import { getPaginationPost } from 'lib/getPaginationPost'
 
 interface Props {
   browser: {
@@ -35,29 +34,8 @@ const Home: NextPage<Props> = (props) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  // 获取分页
-  const myDataSource = await getDataSource()
-  const perPage = 5
-  const url = context.req.url
-  const query = getQuery(url)
-  const page = parseInt(query.page?.toString()) || 1
-  const [posts, count] = await myDataSource.manager.findAndCount(Post, {
-    skip: (page - 1) * perPage,
-    take: perPage
-  })
-  const ua = context.req.headers['user-agent']
-  const result = new UAParser(ua).getResult()
+export const getServerSideProps: GetServerSideProps = getPaginationPost
 
-  return {
-    props: {
-      browser: result.browser,
-      posts: JSON.parse(JSON.stringify(posts)),
-      count,
-      page,
-      total: Math.ceil(count / perPage)
-    }
-  }
-}
+Home.getLayout = LayoutDefault
 
 export default Home

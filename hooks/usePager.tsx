@@ -22,7 +22,7 @@ export function usePager(options: Options) {
   }, [])
   return (
     <>
-      <div>
+      <div className="pagination">
         <span>共 {count} 篇文章，当前 {page}/{total}，</span>
         {page > 1 && <Link href={urlMaker(page - 1)}>
           <a>上一页</a>
@@ -39,6 +39,9 @@ export function usePager(options: Options) {
         </Link>}
       </div>
       <style jsx>{`
+      .pagination {
+        padding: 8px 16px;
+      }
       .page-button {
         border: 1px solid #ced1d7;
         line-height: 2.2;

@@ -1,9 +1,18 @@
 import 'styles/globals.scss'
-import Layout from 'components/layout'
 import { enableStaticRendering } from 'mobx-react'
 import axios from 'axios'
 import { useStore } from 'hooks/useStore'
-import { useEffect } from 'react'
+import { ReactElement, ReactNode, useEffect } from 'react'
+import { AppProps } from 'next/app'
+import { NextPage } from 'next'
+
+export type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
 
 function getUserInfo() {
   return new Promise((resolve, reject) => {
@@ -14,8 +23,8 @@ function getUserInfo() {
   })
 }
 
-export default function MyApp(options) {
-  const { Component, pageProps } = options
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page)
   enableStaticRendering(typeof window === 'undefined')
   const store = useStore()
   useEffect(() => {
@@ -23,10 +32,6 @@ export default function MyApp(options) {
       store.user.setName(username || null)
     })
   }, [])
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  )
+  return getLayout(<Component {...pageProps} />)
 }
 

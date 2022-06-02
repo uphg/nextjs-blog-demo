@@ -1,62 +1,20 @@
 import { GetServerSideProps, NextPage } from 'next'
-import { UAParser } from 'ua-parser-js'
-import { Post } from 'src/entity/Post'
-import { getDataSource } from 'lib/getDataSource'
-import Link from "next/link"
-import { usePager } from 'hooks/usePager'
-import getQuery from 'lib/getQuery'
+import { usePosts, PostsProps } from 'hooks/usePosts'
+import LayoutDefault from 'components/layout/default'
+import { getPaginationPost } from 'lib/getPaginationPost'
 
-interface Props {
-  browser: {
-    name: string;
-    version: string;
-    major: string;
-  },
-  posts: Post[];
-  count: number;
-  page: number;
-  total: number;
-}
-
-const PostsIndex: NextPage<Props> = (props) => {
-  const { page, total, count } = props
-  const pager = usePager({ page, total, count })
+const PostsIndex = (props: PostsProps) => {
+  const posts = usePosts(props)
   return (
     <div>
-      <h2>文章列表</h2>
-      {props.posts.map((item) => (
-        <div key={item.id}>
-          <Link href={`/posts/${item.id}`}><a>{item.title}</a></Link>
-        </div>
-      ))}
-      {pager}
+      <h2>我的博客列表</h2>
+      {posts}
     </div>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  // 获取分页
-  const myDataSource = await getDataSource()
-  const perPage = 5
-  const url = context.req.url
-  const query = getQuery(url)
-  const page = parseInt(query.page?.toString()) || 1
-  const [posts, count] = await myDataSource.manager.findAndCount(Post, {
-    skip: (page - 1) * perPage,
-    take: perPage
-  })
-  const ua = context.req.headers['user-agent']
-  const result = new UAParser(ua).getResult()
+PostsIndex.getLayout = LayoutDefault
 
-  return {
-    props: {
-      browser: result.browser,
-      posts: JSON.parse(JSON.stringify(posts)),
-      count,
-      page,
-      total: Math.ceil(count / perPage)
-    }
-  }
-}
+export const getServerSideProps: GetServerSideProps = getPaginationPost
 
 export default PostsIndex

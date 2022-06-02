@@ -19,10 +19,6 @@ const navLinks = [
 
 function Navbar(props) {
   const store = useStore()
-  useEffect(() => {
-    console.log('props')
-    console.log(props)
-  })
   return (
     <header className={style.navbar}>
       <div className={style.container}>

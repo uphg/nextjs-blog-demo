@@ -1,7 +1,10 @@
 
 .main {
-  width: 1032px;
-  padding: 52px 16px 0;
+  width: 732px;
+  margin-top: calc(52px + 10px);
+  // padding: 12px 16px 12px;
+  box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
+  background-color: #fff;
   margin: {
     left: auto;
     right: auto;
