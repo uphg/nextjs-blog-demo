@@ -1,6 +1,7 @@
 // import { getDataSource } from "lib/getDataSource"
 import { withSessionRoute } from "lib/withSession"
 import { NextApiHandler } from "next"
+import _ from 'lodash'
 // import { User } from "src/entity/User"
 
 
@@ -13,7 +14,7 @@ const Userinfo: NextApiHandler = withSessionRoute(async (request, response) => {
   if (user) {
     response.statusCode = 200
     response.setHeader('Content-Type', 'application/json')
-    response.json({ username: user.username })
+    response.json(_.omit(user, ['id', 'createdAt', 'updatedAt']))
   } else {
     response.statusCode = 401
   }
