@@ -13,11 +13,15 @@ type Props = {
 
 const postShow: NextPageWithLayout<Props> = (props) => {
   const { post } = props
+
   return (
     post ? (
-      <div className={classnames(style.article, 'markdown-body')}>
+      <div className={style.article}>
         <h1 className={style.title}>{post.title}</h1>
-        <article className={style.content} dangerouslySetInnerHTML={{ __html: marked(post?.content) }}></article>
+        <div className={style['author-info']}>
+          <span>{}</span>
+        </div>
+        <article className={classnames(style.content, 'markdown-body')} dangerouslySetInnerHTML={{ __html: marked(post?.content) }}></article>
       </div>
     ) : null
   )
@@ -32,6 +36,10 @@ export const getServerSideProps: GetServerSideProps<any, { id: string }> = async
       id: context.params.id
     }
   })
+
+  console.log('post')
+  console.log({...post, content: '1'})
+  console.log(post.author)
   return {
     props: {
       post: JSON.parse(JSON.stringify(post))
