@@ -5,6 +5,7 @@ import style from 'styles/post.module.scss'
 import { NextPageWithLayout } from "pages/_app";
 import LayoutDefault from 'components/layout/default'
 import { marked } from 'marked';
+import classnames from 'classnames'
 
 type Props = {
   post: Post
@@ -14,7 +15,7 @@ const postShow: NextPageWithLayout<Props> = (props) => {
   const { post } = props
   return (
     post ? (
-      <div className={style.article}>
+      <div className={classnames(style.article, 'markdown-body')}>
         <h1 className={style.title}>{post.title}</h1>
         <article className={style.content} dangerouslySetInnerHTML={{ __html: marked(post?.content) }}></article>
       </div>

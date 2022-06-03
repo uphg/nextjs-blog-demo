@@ -1,3 +1,4 @@
+import 'github-markdown-css'
 import 'styles/globals.scss'
 import { enableStaticRendering } from 'mobx-react'
 import axios from 'axios'
