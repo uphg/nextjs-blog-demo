@@ -13,7 +13,7 @@ const navLinks = [
   },
   {
     title: '我的博客',
-    link: '/posts'
+    link: '/post'
   }
 ]
 
@@ -35,7 +35,10 @@ function Navbar(props) {
             </Link>
           ))}
         </div>
-        <Link href="/"><a className={style.username}>{store.user.name}</a></Link>
+        <div className={style.options}>
+          <Link href="/editor/new"><a className={style['nav-item']}>新建博客</a></Link>
+          <Link href="/"><a className={style['nav-item']}>{store.user.name}</a></Link>
+        </div>
       </div>
     </header>
   )

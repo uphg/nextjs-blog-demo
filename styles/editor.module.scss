@@ -1,0 +1,51 @@
+
+.edit-draft {
+  max-width: 800px;
+  margin: calc(12px + 52px) auto 32px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
+}
+
+.header {
+  height: 52px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.editor-options {
+  width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.title {
+  padding: 0 32px;
+  height: 62px;
+  border-bottom: 1px solid #ddd;
+}
+
+.title-input {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  font-size: 24px;
+  line-height: 28.8px;
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.main {
+  max-width: 100%;
+  line-height: 2.2;
+  display: flex;
+}
+

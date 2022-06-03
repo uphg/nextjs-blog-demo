@@ -17,8 +17,8 @@ type AppPropsWithLayout = AppProps & {
 function getUserInfo(next) {
   return new Promise((resolve, reject) => {
     axios.get('/api/v1/userinfo').then((response) => {
-      const { username } = response?.data || {}
-      next({ username })
+      const data = response?.data || {}
+      next(data)
     })
   })
 }
@@ -28,8 +28,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   enableStaticRendering(typeof window === 'undefined')
   const store = useStore()
   useEffect(() => {
-    getUserInfo(({ username }) => {
-      store.user.setName(username || null)
+    getUserInfo(({ username, id }) => {
+      store.user.setName(username)
+      store.user.setId(id)
     })
   }, [])
   return getLayout(<Component {...pageProps} />)

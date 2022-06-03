@@ -7,6 +7,10 @@ body {
   background-color: #f6f6f6;
 }
 
+body {
+  overflow-y: scroll;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -16,10 +20,48 @@ a {
   box-sizing: border-box;
 }
 
-.heihei {
-  color: #c80000;
+.editor-textarea {
+  &:focus-visible {
+    outline: none;
+  }
+  &.ant-input {
+    font-family: inherit;
+    // height: calc(100vh - 32px - 63px - 12px - 52px);
+    min-height: 800px;
+    width: 100%;
+    padding: 16px 32px;
+    border: 0;
+    resize: none;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  &.ant-input:hover {
+    border-color: #fff;
+    border-right-width: 1px;
+  }
+  &.ant-input:focus {
+    border-color: #fff;
+    box-shadow: none;
+    border-right-width: 1px;
+    outline: 0;
+  }
 }
 
-.haha {
-  color: #ffcc33;
+.button {
+  cursor: pointer;
+  background-color: #1a73e8;
+  color: #fff;
+  border: 0;
+  padding: 2px 16px;
+  font-size: 14px;
+  height: 32px;
+  line-height: 22px;
+  border-radius: 2px;
+  transition: background-color 0.25s;
+  &:hover, &:focus {
+    background-color: #5d9cef;
+  }
+  &:active {
+    background-color: #135bb9;
+  }
 }

@@ -14,7 +14,7 @@ const Userinfo: NextApiHandler = withSessionRoute(async (request, response) => {
   if (user) {
     response.statusCode = 200
     response.setHeader('Content-Type', 'application/json')
-    response.json(_.omit(user, ['id', 'createdAt', 'updatedAt']))
+    response.json(_.omit(user, ['createdAt', 'updatedAt']))
   } else {
     response.statusCode = 401
   }

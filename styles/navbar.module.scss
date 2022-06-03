@@ -1,3 +1,5 @@
+@import 'vars.scss';
+
 .navbar {
   height: 52px;
   background-color: #fff;
@@ -10,8 +12,7 @@
 
 .container {
   display: flex;
-  width: 732px;
-  padding: 0 16px;
+  max-width: calc($container-width + 32px);
   margin: {
     left: auto;
     right: auto;
@@ -19,27 +20,34 @@
 }
 
 .logo {
+  padding: 0 16px;
   font-size: 32px;
   font-weight: 700;
   display: flex;
   align-items: center;
   color: #565273;
+  font-family: inherit;
 }
 
 .nav-links {
   font-size: 14px;
-  line-height: 52px;
-  .nav-item {
-    padding: 0 16px;
-    &.active {
-      font-weight: 700;
-    }
-  }
-
-  // background-color: red;
+  display: flex;
 }
 
-.username {
+.nav-item {
+  height: 100%;
+  line-height: 52px;
+  padding: 0 16px;
+  &.active {
+    font-weight: 700;
+  }
+}
+
+.options {
   margin-left: auto;
+  display: flex;
+  .username {
+  
+  }
 }
 

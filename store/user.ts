@@ -1,7 +1,8 @@
 import { observable, action, makeAutoObservable } from 'mobx';
 
 export class UserStore {
-  @observable name = '';
+  @observable name = null;
+  @observable id = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -9,6 +10,10 @@ export class UserStore {
   @action
   setName(name) {
     this.name = name
+  }
+  @action
+  setId(id) {
+    this.id = id
   }
 }
 
