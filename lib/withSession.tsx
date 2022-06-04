@@ -20,9 +20,13 @@ declare module 'iron-session' {
 }
 
 export function withSessionRoute(handle: NextApiHandler) {
+  console.log('sessionOptions')
+  console.log(sessionOptions)
   return withIronSessionApiRoute(handle, sessionOptions)
 }
 
 export function withSessionSsr(handler) {
+  console.log('sessionOptions')
+  console.log(sessionOptions)
   return withIronSessionSsr(handler, sessionOptions);
 }
