@@ -44,11 +44,11 @@ function Navbar(props) {
           ))}
         </div>
         <div className={style.options}>
-          <Link href="/editor/new"><a className={style['nav-item']}>新建博客</a></Link>
           {store.user.id ? (
             <>
-              <Link href={`/user/${store.user.id}`}><a className={style['nav-item']}>{store.user.name}</a></Link>
+              <Link href="/editor/new"><a className={style['nav-item']}>新建博客</a></Link>
               <button className={style['option-button']} onClick={onLogout}>退出登录</button>
+              <Link href={`/user/${store.user.id}`}><a className={style['nav-item']}>{store.user.name}</a></Link>
             </>
           ) : (
             <Link href='/sign_in'>
