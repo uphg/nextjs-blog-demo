@@ -5,6 +5,7 @@ import LayoutDefault from 'components/layout/default'
 import { getPaginationPost } from 'lib/getPaginationPost'
 import { NextPageWithLayout } from '../_app'
 import { usePosts } from 'hooks/usePosts'
+import { observer } from 'mobx-react'
 
 interface Props {
   posts: Post[];
@@ -26,4 +27,4 @@ export const getServerSideProps: GetServerSideProps = getPaginationPost
 
 Posts.getLayout = LayoutDefault
 
-export default Posts
+export default observer(Posts)

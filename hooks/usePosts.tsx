@@ -3,6 +3,7 @@ import { usePager } from "hooks/usePager"
 import Link from "next/link"
 import { useCallback } from "react";
 import { Post } from "src/entity/Post";
+import { useStore } from "./useStore";
 
 export interface PostsProps {
   posts: Post[];
@@ -14,7 +15,7 @@ export interface PostsProps {
 export const usePosts = (props: PostsProps) =>  {
   const { page, total, count } = props
   const pager = usePager({ page, total, count })
-
+  const store = useStore()
   const onRemove = (id) => {
     axios.delete(`/api/v1/post/${id}`).then((response) => {
       console.log('response')
@@ -34,13 +35,15 @@ export const usePosts = (props: PostsProps) =>  {
             </div>
             <div className="abstract">{item.content.slice(0, 200)}</div>
             <div className="meta">
-              <span className="user-info">{item.authorName + ' - ' + item.authorId}</span>
-              <span className="options">
-                <Link href={`/editor/${item.id}`}>
-                  <a className="option-button">编辑</a>
-                </Link>
-                <button className="option-button" onClick={() => onRemove(item.id)}>删除</button>
-              </span>
+              <span className="user-info">{item.authorName}</span>
+              {item.authorId === store.user.id && (
+                <span className="options">
+                  <Link href={`/editor/${item.id}`}>
+                    <a className="option-button">编辑</a>
+                  </Link>
+                  <button className="option-button" onClick={() => onRemove(item.id)}>删除</button>
+                </span>
+              )}
             </div>
           </div>
         ))}

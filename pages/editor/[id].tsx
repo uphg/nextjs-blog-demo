@@ -17,7 +17,7 @@ const postsShow = (props: Props) => {
     title,
     content,
     submit: {
-      text: '提交',
+      text: '保存',
       request: ({ title, content }) => {
         const postId = props.post.id
         axios.patch(`/api/v1/post/${postId}`, { title, content })
@@ -39,8 +39,8 @@ const postsShow = (props: Props) => {
 export default postsShow
 
 export const getServerSideProps: GetServerSideProps<any, { id: string }> = async (context) => {
-  const myDataSource = await getDataSource()
-  const post = await myDataSource.manager.findOne(Post, {
+  const appDataSource = await getDataSource()
+  const post = await appDataSource.manager.findOne(Post, {
     where: {
       id: context.params.id
     }

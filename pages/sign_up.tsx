@@ -29,7 +29,7 @@ const SignUp: NextPage = () => {
       }
     ],
     submit: {
-      request: (formData) => axios.post('/api/v1/users', formData),
+      request: (formData) => axios.post('/api/v1/user', formData),
       success: () => {
         window.alert('注册成功')
         router.push('/sign_in')

@@ -17,8 +17,8 @@ const PostNew: NextApiHandler = withSessionRoute(async (req, res) => {
     post.content = content
     post.author = user
     post.authorName = user.username
-    const myAppDataSource = await getDataSource()
-    await myAppDataSource.manager.save(post)
+    const appDataSource = await getDataSource()
+    await appDataSource.manager.save(post)
     res.json(post)
   }
 })

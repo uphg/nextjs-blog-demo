@@ -6,7 +6,6 @@ import { useStore } from 'hooks/useStore'
 import { ReactElement, ReactNode, useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode

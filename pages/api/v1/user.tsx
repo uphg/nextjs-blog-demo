@@ -11,13 +11,13 @@ const Users: NextApiHandler = async (req, res) => {
   user.password = password
   user.passwordConfirmation = passwordConfirmation
 
-  const myDataSource = await getDataSource()
+  const appDataSource = await getDataSource()
   await user.validate()
   if (user.hasErrors()) {
     res.statusCode = 422
     res.write(JSON.stringify(user.errors))
   } else {
-    await myDataSource.manager.save(user)
+    await appDataSource.manager.save(user)
     res.statusCode = 200
     res.write(JSON.stringify(user))
   }

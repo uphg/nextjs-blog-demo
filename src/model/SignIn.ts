@@ -1,4 +1,3 @@
-import _ from "lodash";
 import md5 from "md5";
 import { getDataSource } from "lib/getDataSource";
 import { User } from "src/entity/User";
@@ -23,8 +22,8 @@ export class SignIn {
       errors.password.push('密码不能为空')
     } else {
       // 在数据库中查找该用户名
-      const myDataSource = await getDataSource()
-      const user = await myDataSource.manager.findOne(User, {
+      const appDataSource = await getDataSource()
+      const user = await appDataSource.manager.findOne(User, {
         where: { username: username }
       })
       if (user) {
@@ -41,9 +40,4 @@ export class SignIn {
   hasErrors() {
     return !!Object.values(this.errors).find(e => e.length > 0)
   }
-
-  // 处理 JSON 方法返回的数据
-  // toJSON() {
-  //   return _.omit(this, ['password', 'passwordConfirmation', 'passwordDigest', 'errors'])
-  // }
 }

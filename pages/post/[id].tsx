@@ -1,4 +1,4 @@
-import {  GetServerSideProps } from "next"
+import { GetServerSideProps } from "next"
 import { getDataSource } from "lib/getDataSource";
 import { Post } from "src/entity/Post";
 import style from 'styles/post.module.scss'
@@ -21,7 +21,10 @@ const postShow: NextPageWithLayout<Props> = (props) => {
         <div className={style['author-info']}>
           <span>{}</span>
         </div>
-        <article className={classnames(style.content, 'markdown-body')} dangerouslySetInnerHTML={{ __html: marked(post?.content) }}></article>
+        <article
+          className={classnames(style.content, 'markdown-body')}
+          dangerouslySetInnerHTML={{ __html: marked(post?.content) }}
+        ></article>
       </div>
     ) : null
   )
@@ -30,15 +33,13 @@ const postShow: NextPageWithLayout<Props> = (props) => {
 postShow.getLayout = LayoutDefault
 
 export const getServerSideProps: GetServerSideProps<any, { id: string }> = async (context) => {
-  const myDataSource = await getDataSource()
-  const post = await myDataSource.manager.findOne(Post, {
+  const appDataSource = await getDataSource()
+  const post = await appDataSource.manager.findOne(Post, {
     where: {
       id: context.params.id
     }
   })
 
-  console.log('post')
-  console.log(post)
   return {
     props: {
       post: JSON.parse(JSON.stringify(post))

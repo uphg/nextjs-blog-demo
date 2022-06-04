@@ -5,6 +5,7 @@ import logo from 'assets/images/logo.png'
 import { useEffect } from 'react';
 import { useStore } from 'hooks/useStore';
 import { observer } from 'mobx-react-lite';
+import axios from 'axios';
 
 const navLinks = [
   {
@@ -19,6 +20,13 @@ const navLinks = [
 
 function Navbar(props) {
   const store = useStore()
+
+  const onLogout = () => {
+    axios.put('/api/v1/session/clear').then(() => {
+
+      window.alert('退出登录成功')
+    })
+  }
   return (
     <header className={style.navbar}>
       <div className={style.container}>
@@ -38,7 +46,10 @@ function Navbar(props) {
         <div className={style.options}>
           <Link href="/editor/new"><a className={style['nav-item']}>新建博客</a></Link>
           {store.user.id ? (
-            <Link href="/"><a className={style['nav-item']}>{store.user.name}</a></Link>
+            <>
+              <Link href={`/user/${store.user.id}`}><a className={style['nav-item']}>{store.user.name}</a></Link>
+              <button className={style['option-button']} onClick={onLogout}>退出登录</button>
+            </>
           ) : (
             <Link href='/sign_in'>
               <a className={style['nav-item']}>登录</a>

@@ -1,7 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
 export class CreatePosts1651489566747 implements MigrationInterface {
-
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(new Table({
       name: 'posts',
@@ -36,5 +35,4 @@ export class CreatePosts1651489566747 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('posts')
   }
-
 }

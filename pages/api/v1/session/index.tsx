@@ -2,9 +2,8 @@ import { withSessionRoute } from "lib/withSession"
 import { NextApiHandler } from "next"
 import { SignIn } from "src/model/SignIn"
 
-const Sessions: NextApiHandler = withSessionRoute(async (req, res) => {
+const Session: NextApiHandler = withSessionRoute(async (req, res) => {
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
-
   const { username, password } = req.body
   const signIn = new SignIn()
   signIn.username = username
@@ -23,4 +22,4 @@ const Sessions: NextApiHandler = withSessionRoute(async (req, res) => {
   res.end()
 })
 
-export default Sessions
+export default Session

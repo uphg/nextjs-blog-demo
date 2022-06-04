@@ -5,21 +5,20 @@ import _ from 'lodash'
 // import { User } from "src/entity/User"
 
 
-const Userinfo: NextApiHandler = withSessionRoute(async (request, response) => {
-  const user = request.session.currentUser || null
-  // const myDataSource = await getDataSource()
-  // const founds = await myDataSource.manager.find(User, {
+const Userinfo: NextApiHandler = withSessionRoute(async (req, res) => {
+  const user = req.session.currentUser || null
+  // const appDataSource = await getDataSource()
+  // const founds = await appDataSource.manager.find(User, {
   //   where: { username: user.username }
   // })
   if (user) {
-    response.statusCode = 200
-    response.setHeader('Content-Type', 'application/json')
-    response.json(_.omit(user, ['createdAt', 'updatedAt']))
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'application/json')
+    res.json(_.omit(user, ['createdAt', 'updatedAt']))
   } else {
-    response.statusCode = 401
+    res.statusCode = 401
   }
-  response.end()
-  
+  res.end()
 })
 
 export default Userinfo
