@@ -16,6 +16,8 @@ export class Post {
     updatedAt: Date;
   @Column('int')
     authorId: string;
+  @Column('varchar')
+    authorName: string;
   @ManyToOne('User', 'posts')
     author: User;
   @OneToMany('Comment', 'post')

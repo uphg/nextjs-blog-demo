@@ -18,15 +18,21 @@ const postsShow = (props: Props) => {
     content,
     submit: {
       text: '提交',
-      request: ({ title, content }) => axios.patch(`/api/v1/post${props.post.id}`, { title, content }).then(() => {
-        // window.alert('发布成功')
-        // router.push('/posts')
-      })
+      request: ({ title, content }) => {
+        const postId = props.post.id
+        axios.patch(`/api/v1/post/${postId}`, { title, content })
+          .then(() => {
+            window.alert('编辑成功')
+            router.push(`/post/${postId}`)
+          })
+      }
     }
   })
 
   return (
-    {editor}
+    <>
+      {editor}
+    </>
   )
 }
 

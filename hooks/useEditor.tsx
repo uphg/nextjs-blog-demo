@@ -2,13 +2,14 @@ import { AxiosResponse } from "axios"
 import { useCallback, useState } from "react"
 import { Input } from 'antd'
 import style from 'styles/editor.module.scss'
+import Link from "next/link"
 
 type FormData = { title?: string, content?: string }
 
 type useEditorOptions = FormData & {
   submit: {
     text: string;
-    request: (formData: FormData) => Promise<void | AxiosResponse<FormData, any>>;
+    request: (formData: FormData) => void | Promise<void | AxiosResponse<FormData, any>>;
   }
 }
 
@@ -36,6 +37,9 @@ export function useEditor(props: useEditorOptions) {
     <>
       <header className={style.header}>
         <div className={style['editor-options']}>
+          <Link href='/'>
+            <a className="nav-item">首页</a>
+          </Link>
           <div className="options-container">
             <button className="button" onClick={onSubmit}>{props.submit.text}</button>
           </div>
@@ -46,7 +50,7 @@ export function useEditor(props: useEditorOptions) {
           <input
             className={style['title-input']}
             type="text"
-            placeholder="输入文章标题"
+            placeholder="输入文章标题..."
             value={formData.title}
             onInput={(event) => {
               const el = event.target as HTMLInputElement
@@ -56,7 +60,6 @@ export function useEditor(props: useEditorOptions) {
               })
             }}
           />
-          
         </div>
         <div className={style.main}>
           <Input.TextArea

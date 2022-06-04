@@ -38,8 +38,7 @@ export const getServerSideProps: GetServerSideProps<any, { id: string }> = async
   })
 
   console.log('post')
-  console.log({...post, content: '1'})
-  console.log(post.author)
+  console.log(post)
   return {
     props: {
       post: JSON.parse(JSON.stringify(post))

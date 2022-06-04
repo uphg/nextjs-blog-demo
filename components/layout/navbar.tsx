@@ -11,10 +11,10 @@ const navLinks = [
     title: '首页',
     link: '/'
   },
-  {
-    title: '我的博客',
-    link: '/post'
-  }
+  // {
+  //   title: '我的博客',
+  //   link: '/post'
+  // }
 ]
 
 function Navbar(props) {
@@ -37,7 +37,13 @@ function Navbar(props) {
         </div>
         <div className={style.options}>
           <Link href="/editor/new"><a className={style['nav-item']}>新建博客</a></Link>
-          <Link href="/"><a className={style['nav-item']}>{store.user.name}</a></Link>
+          {store.user.id ? (
+            <Link href="/"><a className={style['nav-item']}>{store.user.name}</a></Link>
+          ) : (
+            <Link href='/sign_in'>
+              <a className={style['nav-item']}>登录</a>
+            </Link>
+          )}
         </div>
       </div>
     </header>

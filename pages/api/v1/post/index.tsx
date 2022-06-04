@@ -3,11 +3,9 @@ import { withSessionRoute } from "lib/withSession"
 import { NextApiHandler } from "next"
 import { Post } from "src/entity/Post"
 
-const Posts: NextApiHandler = withSessionRoute(async (req, res) => {
+const PostNew: NextApiHandler = withSessionRoute(async (req, res) => {
   if (req.method === 'POST') {
     const user = req.session.currentUser
-    console.log('user')
-    console.log(user)
     if (!user) {
       res.statusCode = 401
       res.end()
@@ -18,10 +16,11 @@ const Posts: NextApiHandler = withSessionRoute(async (req, res) => {
     post.title = title
     post.content = content
     post.author = user
+    post.authorName = user.username
     const myAppDataSource = await getDataSource()
     await myAppDataSource.manager.save(post)
     res.json(post)
   }
 })
 
-export default Posts
+export default PostNew

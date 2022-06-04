@@ -16,8 +16,7 @@ interface Props {
 const Posts: NextPageWithLayout<Props> = (props) => {
   const posts = usePosts(props)
   return (
-    <div>
-      <h2>博客列表</h2>
+    <div className='posts-container'>
       {posts}
     </div>
   )

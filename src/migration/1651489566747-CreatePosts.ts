@@ -24,6 +24,10 @@ export class CreatePosts1651489566747 implements MigrationInterface {
         {
           name: 'author_id',
           type: 'int'
+        },
+        {
+          name: 'author_name',
+          type: 'varchar'
         }
       ]
     }))

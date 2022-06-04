@@ -6,6 +6,7 @@ import { useStore } from 'hooks/useStore'
 import { ReactElement, ReactNode, useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -29,9 +30,12 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   enableStaticRendering(typeof window === 'undefined')
   const store = useStore()
   useEffect(() => {
-    getUserInfo(({ username, id }) => {
-      store.user.setName(username)
-      store.user.setId(id)
+    getUserInfo((user) => {
+      if (user) {
+        const { username, id } = user
+        store.user.setName(username)
+        store.user.setId(id)
+      }
     })
   }, [])
   return getLayout(<Component {...pageProps} />)

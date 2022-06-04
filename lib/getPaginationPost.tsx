@@ -15,7 +15,6 @@ export const getPaginationPost = async (context) => {
     skip: (page - 1) * perPage,
     take: perPage
   })
-  const ua = context.req.headers['user-agent']
 
   return {
     props: {
