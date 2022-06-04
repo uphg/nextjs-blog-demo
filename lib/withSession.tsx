@@ -6,10 +6,13 @@ import { User } from 'src/entity/User'
 export const sessionOptions: IronSessionOptions = {
   password: process.env.SECRET as string,
   cookieName: 'blog',
-  // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
   cookieOptions: {
     secure: false,
-  },
+  }
+  // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
+  // cookieOptions: {
+  //   secure: process.env.NODE_ENV === 'production',
+  // },
 }
 
 // This is where we specify the typings of req.session.*
@@ -20,13 +23,9 @@ declare module 'iron-session' {
 }
 
 export function withSessionRoute(handle: NextApiHandler) {
-  console.log('sessionOptions')
-  console.log(sessionOptions)
   return withIronSessionApiRoute(handle, sessionOptions)
 }
 
 export function withSessionSsr(handler) {
-  console.log('sessionOptions')
-  console.log(sessionOptions)
   return withIronSessionSsr(handler, sessionOptions);
 }
