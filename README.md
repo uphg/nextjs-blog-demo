@@ -43,6 +43,9 @@ psql -U blog
 # 创建 blog_development 数据库
 CREATE DATABASE blog_development ENCODING 'UTF8' LC_COLLATE 'en_US.utf8' LC_CTYPE 'en_US.utf8';
 
+# 创建 blog_production 数据库（服务器）
+CREATE DATABASE blog_production ENCODING 'UTF8' LC_COLLATE 'en_US.utf8' LC_CTYPE 'en_US.utf8';
+
 # 进入 blog_development 数据库
 \c blog_development
 ```
@@ -63,8 +66,10 @@ docker build . -t jack/node-web-app
 
 # 本地运行
 docker run --name=node1 --network=network1 -p 3000:3000 -dit jack/node-web-app
+
 # 服务器上运行
-docker run --name=node1 --network=host -p 3000:3000 -dit jack/node-web-app
+# docker run --name app --network=network1 -p 3000:3000 -d jack/node-web-app
+docker run --name=app --net=host -p 3000:3000 -dit jack/node-web-app
 
 docker logs node1
 ```
