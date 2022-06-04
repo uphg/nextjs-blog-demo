@@ -12,7 +12,7 @@ docker network create network1
 docker run --net=network1 --name=psql1 -v "/$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
 
 # 服务器上运行
-docker run -v /home/blog/blog-data/:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
+docker run --name=psql1 -v /home/blog/blog-data/:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
 ```
 
 ## 清空之前的开发环境
@@ -67,4 +67,10 @@ docker run --name=node1 --network=network1 -p 3000:3000 -dit jack/node-web-app
 docker run --name=node1 --network=host -p 3000:3000 -dit jack/node-web-app
 
 docker logs node1
+```
+
+## 一键部署命令
+
+```sh
+ssh blog@dev1 'bash -s' < bin/deploy.sh
 ```
