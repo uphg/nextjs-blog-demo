@@ -68,7 +68,6 @@ docker build . -t jack/node-web-app
 docker run --name=node1 --network=network1 -p 3000:3000 -dit jack/node-web-app
 
 # 服务器上运行
-# docker run --name app --network=network1 -p 3000:3000 -d jack/node-web-app
 docker run --name=app --net=host -p 3000:3000 -dit jack/node-web-app
 
 docker logs node1

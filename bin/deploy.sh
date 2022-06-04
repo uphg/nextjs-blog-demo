@@ -9,5 +9,5 @@ yarn m:run &&
 docker build -t jack/node-web-app . &&
 docker kill app &&
 docker rm app &&
-docker run --name app --network=host -p 3000:3000 -d jack/node-web-app &&
+docker run --name=app --net=host -p 3000:3000 -dit jack/node-web-app &&
 echo 'OK!'
