@@ -1,7 +1,7 @@
 import axios from "axios";
 import { usePager } from "hooks/usePager"
 import Link from "next/link"
-import { useCallback } from "react";
+import { useRouter } from "next/router";
 import { Post } from "src/entity/Post";
 import { useStore } from "./useStore";
 
@@ -16,12 +16,14 @@ export const usePosts = (props: PostsProps) =>  {
   const { page, total, count } = props
   const pager = usePager({ page, total, count })
   const store = useStore()
+  const router = useRouter()
   const onRemove = (id) => {
-    axios.delete(`/api/v1/post/${id}`).then((response) => {
-      console.log('response')
-      console.log(response)
-      window.alert('删除成功')
-    })
+    const result = window.confirm('确定删除？')
+    if (result) {
+      axios.delete(`/api/v1/post/${id}`).then((response) => {
+        router.reload()
+      })
+    }
   }
   return (
     <>
