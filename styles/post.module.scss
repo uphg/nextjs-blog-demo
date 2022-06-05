@@ -4,12 +4,29 @@
   padding: 24px;
 }
 
-.title {
-  margin: 0 0 0.6em;
+.header {
+  margin: 0 0 18px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.author-info {
+.options {
   display: flex;
+}
+
+.option-item {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  &:hover, &:focus {
+    color: $primary-color;
+  }
 }
 
 .content {
