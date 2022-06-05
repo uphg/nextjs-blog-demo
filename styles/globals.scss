@@ -37,6 +37,10 @@ a {
   &:active {
     background-color: #135bb9;
   }
+  &.submit {
+    height: 40px;
+    width: 100%;
+  }
 }
 
 .editor-textarea {

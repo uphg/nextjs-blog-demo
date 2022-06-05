@@ -2,6 +2,7 @@ import axios from "axios"
 import { useForm } from "hooks/useForm"
 import { NextPage } from "next"
 import { useRouter } from "next/router"
+import style from 'styles/login-or-sigup.module.scss'
 
 const SignUp: NextPage = () => {
   const router = useRouter()
@@ -35,14 +36,16 @@ const SignUp: NextPage = () => {
         router.push('/sign_in')
       }
     },
-    buttons: <button type="submit">提交</button>
+    buttons: <button className="button submit" type="submit">提交</button>
   })
 
   return (
-    <>
-      <h2>注册</h2>
-      {form}
-    </>
+    <div className={style.container}>
+      <div className={style.wrap}>
+        <h2 className={style.title}>注册</h2>
+        {form}
+      </div>
+    </div>
   )
 }
 

@@ -38,7 +38,7 @@ export function useEditor(props: useEditorOptions) {
     <>
       <header className={style.header}>
         <div className={style.options}>
-          <NavLink link="/">首页</NavLink>
+          <NavLink to="/">首页</NavLink>
           <div className={style['options-wrap']}>
             <button className="button" onClick={onSubmit}>{props.submit.text}</button>
           </div>

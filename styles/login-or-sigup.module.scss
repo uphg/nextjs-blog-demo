@@ -1,0 +1,32 @@
+@import 'vars.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.wrap {
+  width: 318px;
+  box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
+  background-color: #fff;
+  padding: 16px;
+  margin-bottom: 120px;
+}
+
+.title {
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.remark {
+  width: 100%;
+  display: block;
+  text-align: end;
+  font-size: 12px;
+}
+
+.link {
+  color: $primary-color;
+}

@@ -5,6 +5,8 @@ import { withSessionSsr } from "lib/withSession"
 import { GetServerSideProps, NextPage } from "next"
 import { useRouter } from "next/router"
 import { User } from "src/entity/User"
+import style from 'styles/login-or-sigup.module.scss'
+import Link from "next/link"
 
 const SignIn: NextPage<{ user: User }> = (props) => {
   const router = useRouter()
@@ -23,6 +25,14 @@ const SignIn: NextPage<{ user: User }> = (props) => {
         label: '密码',
         type: 'password',
         key: 'password'
+      },
+      {
+        type: 'row',
+        child: (
+          <span className={style.remark}>还没有账号？去<Link href='/signup'>
+            <a className={style.link}>注册</a>
+          </Link></span>
+        )
       }
     ],
     submit: {
@@ -35,17 +45,16 @@ const SignIn: NextPage<{ user: User }> = (props) => {
         })
       }
     },
-    buttons: <button type="submit">登录</button>
+    buttons: <button className="button submit" type="submit">登录</button>
   })
 
   return (
-    <>
-      {props.user && <div>
-      当前登录用户为：{props.user.username}
-      </div>}
-      <h2>登录</h2>
-      {form}
-    </>
+    <div className={style.container}>
+      <div className={style.wrap}>
+        <h2 className={style.title}>登录</h2>
+        {form}
+      </div>
+    </div>
   )
 }
 

@@ -1,11 +1,13 @@
 import { AxiosResponse } from "axios"
 import { useRouter } from "next/router"
 import { ReactChild, useCallback, useState } from "react"
+import style from 'styles/form.module.scss'
 
 type Field<T> = {
-  label: string,
-  type: 'text' | 'password' | 'textarea',
-  key: keyof T
+  label?: string,
+  type: 'text' | 'password' | 'textarea' | 'row',
+  key?: keyof T,
+  child?: ReactChild
 }
 
 type useFormOptions<T> = {
@@ -59,10 +61,10 @@ export function useForm<T>(options: useFormOptions<T>) {
 
   return (
     <form onSubmit={_onSubimt}>
-      {fields.map((item) => (
-        <div key={item.key.toString()}>
-          <label>
-            <span>{item.label}</span>
+      {fields.map((item, index) => (
+        <div className={style.item} key={item.key?.toString() || index}>
+          <label className={style.label}>{item.label}</label>
+          <div className={style.content}>
             { item.type === 'textarea' ? (
               <textarea
                 value={formData[item.key].toString()}
@@ -71,19 +73,22 @@ export function useForm<T>(options: useFormOptions<T>) {
                 }}
               />
             ) : (
-              <input
-                type={item.type}
-                value={formData[item.key].toString()}
-                onChange={(e) => {
-                  onChange(item.key, e.target.value)
-                }}
-              />
-            ) }
-          </label>
-          { errors[item.key].length > 0 && <span>{errors[item.key].join('，')}</span> }
+              item.type === 'row' ? (item.child) : (
+                <input
+                  className={style.input}
+                  type={item.type}
+                  value={formData[item.key].toString()}
+                  onChange={(e) => {
+                    onChange(item.key, e.target.value)
+                  }}
+                />
+              )
+            )}
+            { errors[item.key]?.length > 0 && <div className={style.error}>{errors[item.key].join('，')}</div> }
+          </div>
         </div>
       ))}
-      <div>
+      <div className={style.item}>
         {buttons}
       </div>
     </form>

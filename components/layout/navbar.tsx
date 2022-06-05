@@ -42,21 +42,21 @@ function Navbar(props) {
         </Link> */}
         <div className={style['nav-links']}>
           {navLinks.map((item, index) => (
-            <NavLink link={item.link} key={item.link + index}>{item.title}</NavLink>
-            // <Link href={item.link} key={item.link + index}>
-            //   <a className={style['nav-item']}>{item.title}</a>
-            // </Link>
+            <NavLink to={item.link} key={item.link + index}>{item.title}</NavLink>
           ))}
         </div>
         <div className={style.options}>
           {store.user.id ? (
             <>
-              <NavLink link="/editor/new">新建博客</NavLink>
+              <NavLink to="/editor/new">新建博客</NavLink>
               <button className={style['option-button']} onClick={onLogout}>退出登录</button>
-              <NavLink link={`/user/${store.user.id}`}>{store.user.name}</NavLink>
+              <NavLink to={`/user/${store.user.id}`}>{store.user.name}</NavLink>
             </>
           ) : (
-            <NavLink link="/sign_in">登录</NavLink>
+            <>
+              <NavLink to="/login">登录</NavLink>
+              <NavLink to="/signup">注册</NavLink>
+            </>
           )}
         </div>
       </div>
