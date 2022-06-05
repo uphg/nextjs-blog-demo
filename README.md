@@ -78,3 +78,67 @@ docker logs node1
 ```sh
 ssh blog@dev1 'bash -s' < bin/deploy.sh
 ```
+
+## nginx 配置
+
+运行 nginx 容器
+
+```bash
+# 映射静态文件
+docker run --name nginx1 --network=host -v /home/blog/nginx.conf:/etc/nginx/conf.d/default.conf -v /home/blog/app/.next/static/:/usr/share/nginx/html/_next/static/ -d nginx:1.19.1
+```
+
+nginx 配置（映射静态文件）
+
+```conf
+server {
+  listen      8080;
+  listen [::]:8080;
+  server_name localhost;
+  location ~ ^/_next/static/  {
+    root    /usr/share/nginx/html/;
+    expires 30d;
+  }
+
+  location / {
+    proxy_pass http://0.0.0.0:3000;
+  }
+}
+```
+
+添加 gzip 压缩配置，参考自博客 [gzip not working on nginx](https://serverfault.com/questions/915928/gzip-not-working-on-nginx)
+
+```conf
+server {
+  listen      80;
+  listen [::]:80;
+  server_name localhost;
+  gzip on;
+  gzip_disable "msie6";
+
+  gzip_comp_level 6;
+  gzip_min_length 1100;
+  gzip_buffers 16 8k;
+  gzip_proxied any;
+  gzip_types
+    text/plain
+    text/css
+    text/js
+    text/xml
+    text/javascript
+    application/javascript
+    application/x-javascript
+    application/json
+    application/xml
+    application/rss+xml
+    image/svg+xml/javascript;
+  location ~ ^/_next/static/  {
+    root    /usr/share/nginx/html/;
+    expires 30d;
+  }
+
+  location / {
+    proxy_pass http://0.0.0.0:3000;
+  }
+}
+```
