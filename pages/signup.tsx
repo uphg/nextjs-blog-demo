@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useForm } from "hooks/useForm"
 import { NextPage } from "next"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import style from 'styles/login-or-sigup.module.scss'
 
@@ -27,6 +28,14 @@ const SignUp: NextPage = () => {
         label: '确认密码',
         type: 'password',
         key: 'passwordConfirmation'
+      },
+      {
+        type: 'row',
+        child: (
+          <span className={style.remark}>已有账号？去<Link href='/login'>
+            <a className={style.link}>登录</a>
+          </Link></span>
+        )
       }
     ],
     submit: {
