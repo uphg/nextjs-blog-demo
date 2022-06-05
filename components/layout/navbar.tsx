@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useStore } from 'hooks/useStore';
 import { observer } from 'mobx-react-lite';
 import { useRouter } from 'next/router';
+import NavLink from './nav-link';
 
 const navLinks = [
   {
@@ -31,8 +32,8 @@ function Navbar(props) {
     })
   }
   return (
-    <header className={style.navbar}>
-      <div className={style.container}>
+    <header className={style.container}>
+      <div className={style.wrap}>
         {/* <Link href="/">
           <a className={style.logo}>
             <span>{'P'}</span>
@@ -41,22 +42,21 @@ function Navbar(props) {
         </Link> */}
         <div className={style['nav-links']}>
           {navLinks.map((item, index) => (
-            <Link href={item.link} key={item.link + index}>
-              <a className={style['nav-item']}>{item.title}</a>
-            </Link>
+            <NavLink link={item.link} key={item.link + index}>{item.title}</NavLink>
+            // <Link href={item.link} key={item.link + index}>
+            //   <a className={style['nav-item']}>{item.title}</a>
+            // </Link>
           ))}
         </div>
         <div className={style.options}>
           {store.user.id ? (
             <>
-              <Link href="/editor/new"><a className={style['nav-item']}>新建博客</a></Link>
+              <NavLink link="/editor/new">新建博客</NavLink>
               <button className={style['option-button']} onClick={onLogout}>退出登录</button>
-              <Link href={`/user/${store.user.id}`}><a className={style['nav-item']}>{store.user.name}</a></Link>
+              <NavLink link={`/user/${store.user.id}`}>{store.user.name}</NavLink>
             </>
           ) : (
-            <Link href='/sign_in'>
-              <a className={style['nav-item']}>登录</a>
-            </Link>
+            <NavLink link="/sign_in">登录</NavLink>
           )}
         </div>
       </div>

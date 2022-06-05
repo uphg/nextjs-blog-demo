@@ -1,5 +1,5 @@
 
-.edit-draft {
+.draft {
   max-width: 800px;
   margin: calc(12px + 52px) auto 32px;
   background-color: #fff;
@@ -18,15 +18,20 @@
   align-items: center;
 }
 
-.editor-options {
-  width: 800px;
+.options {
+  width: 832px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
+.options-wrap {
+  display: flex;
+  align-items: center;
+  padding-right: 16px;
+}
 
 .title {
-  padding: 0 32px;
+  padding: 0 24px;
   height: 62px;
   border-bottom: 1px solid #ddd;
 }
@@ -48,4 +53,3 @@
   line-height: 2.2;
   display: flex;
 }
-

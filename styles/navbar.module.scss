@@ -1,6 +1,6 @@
 @import 'vars.scss';
 
-.navbar {
+.container {
   height: 52px;
   background-color: #fff;
   box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
@@ -10,7 +10,7 @@
   right: 0;
 }
 
-.container {
+.wrap {
   display: flex;
   max-width: calc($container-width + 32px);
   margin: {
@@ -34,7 +34,8 @@
   display: flex;
 }
 
-.nav-item {
+.nav-link {
+  font-size: 14px;
   height: 100%;
   line-height: 52px;
   padding: 0 16px;

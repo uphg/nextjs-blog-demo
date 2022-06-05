@@ -16,7 +16,7 @@ const postShow: NextPageWithLayout<Props> = (props) => {
 
   return (
     post ? (
-      <div className={style.article}>
+      <div className={style.container}>
         <h1 className={style.title}>{post.title}</h1>
         <div className={style['author-info']}>
           <span>{}</span>

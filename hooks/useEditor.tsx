@@ -3,6 +3,7 @@ import { useCallback, useState } from "react"
 import { Input } from 'antd'
 import style from 'styles/editor.module.scss'
 import Link from "next/link"
+import NavLink from "components/layout/nav-link"
 
 type FormData = { title?: string, content?: string }
 
@@ -36,16 +37,14 @@ export function useEditor(props: useEditorOptions) {
   return (
     <>
       <header className={style.header}>
-        <div className={style['editor-options']}>
-          <Link href='/'>
-            <a className="nav-item">首页</a>
-          </Link>
-          <div className="options-container">
+        <div className={style.options}>
+          <NavLink link="/">首页</NavLink>
+          <div className={style['options-wrap']}>
             <button className="button" onClick={onSubmit}>{props.submit.text}</button>
           </div>
         </div>
       </header>
-      <div className={style['edit-draft']}>
+      <div className={style.draft}>
         <div className={style.title}>
           <input
             className={style['title-input']}
@@ -63,7 +62,7 @@ export function useEditor(props: useEditorOptions) {
         </div>
         <div className={style.main}>
           <Input.TextArea
-            className='editor-textarea'
+            className="editor-textarea"
             value={formData.content}
             onChange={e => setFormData({
               content: e.target.value,

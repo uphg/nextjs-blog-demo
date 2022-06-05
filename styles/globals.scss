@@ -20,33 +20,6 @@ a {
   box-sizing: border-box;
 }
 
-.editor-textarea {
-  &:focus-visible {
-    outline: none;
-  }
-  &.ant-input {
-    font-family: inherit;
-    // height: calc(100vh - 32px - 63px - 12px - 52px);
-    min-height: 800px;
-    width: 100%;
-    padding: 16px 32px;
-    border: 0;
-    resize: none;
-    font-size: 16px;
-    line-height: 22px;
-  }
-  &.ant-input:hover {
-    border-color: #fff;
-    border-right-width: 1px;
-  }
-  &.ant-input:focus {
-    border-color: #fff;
-    box-shadow: none;
-    border-right-width: 1px;
-    outline: 0;
-  }
-}
-
 .button {
   cursor: pointer;
   background-color: #1a73e8;
@@ -63,5 +36,32 @@ a {
   }
   &:active {
     background-color: #135bb9;
+  }
+}
+
+.editor-textarea {
+  &:focus-visible {
+    outline: none;
+  }
+  &.ant-input {
+    font-family: inherit;
+    // height: calc(100vh - 32px - 63px - 12px - 52px);
+    min-height: 800px;
+    width: 100%;
+    padding: 16px 24px;
+    border: 0;
+    resize: none;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  &.ant-input:hover {
+    border-color: #fff;
+    border-right-width: 1px;
+  }
+  &.ant-input:focus {
+    border-color: #fff;
+    box-shadow: none;
+    border-right-width: 1px;
+    outline: 0;
   }
 }

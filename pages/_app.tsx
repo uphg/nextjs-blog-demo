@@ -10,6 +10,8 @@ import { NextPage } from 'next'
 import NProgress from "nprogress"
 import router from "next/router"
 
+NProgress.configure({ showSpinner: false })
+
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
 }

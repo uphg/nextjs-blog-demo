@@ -14,10 +14,13 @@ const NewPost: NextPage= () => {
   const editor = useEditor({
     submit: {
       text: '提交',
-      request: ({ title, content }) => axios.post('/api/v1/post', { title, content }).then(() => {
-        window.alert('发布成功')
-        router.push('/post')
-      })
+      request: ({ title, content }) => {
+        axios.post('/api/v1/post', { title, content })
+          .then(() => {
+            window.alert('发布成功')
+            router.push('/post')
+          })
+      }
     }
   })
 
