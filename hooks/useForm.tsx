@@ -47,7 +47,7 @@ export function useForm<T>(options: useFormOptions<T>) {
         } else if (status === 401) {
           window.alert('未登录，请先登录')
           const returnTo = window.location.pathname
-          router.push('/sign_in').then(() => {
+          router.push('/login').then(() => {
             router.push({ query: { returnTo }})
           })
         }

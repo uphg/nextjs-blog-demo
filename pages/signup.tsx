@@ -42,7 +42,7 @@ const SignUp: NextPage = () => {
       request: (formData) => axios.post('/api/v1/user', formData),
       success: () => {
         window.alert('注册成功')
-        router.push('/sign_in')
+        router.push('/login')
       }
     },
     buttons: <button className="button submit" type="submit">提交</button>
